@@ -1,0 +1,25 @@
+<h1><%= @current_employee.name %> Employee</h1>
+<% if @current_division.nil? %>
+  <p>This employee is not currently in a division</p>
+<% else %>
+<h4><%= @current_division.name %></h4>
+<% end %>
+<hr>
+
+<form action="/employee_edit/<%= @current_employee.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+
+  <label for="name_input">Update Employee Name</label>
+  <input type="text" id="name_input" name="name_input">
+
+  <button type="submit" class="btn btn-primary">Update Employee</button>
+</form>
+
+<form action="/employee_delete/<%= @current_employee.id %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <button type="submit" class="btn btn-danger">Delete Employee</button>
+</form>
+
+<p><a href="/">Home</a></p>
+<p><a href="/employee_division/<%= @current_employee.id %>">Update this Employee's Division</a></p>
+<p><a href="/employees">Back</a></p>
