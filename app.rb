@@ -1,0 +1,8 @@
+require('sintra')
+require('sintra/reloader')
+require('sintra/activerecord')
+also_reload('lib/**/*.rb')
+require('./lib/division')
+require('./lib/employee')
+require('./lib/project')
+require('pg')
