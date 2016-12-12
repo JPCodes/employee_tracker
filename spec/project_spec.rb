@@ -10,5 +10,13 @@ describe(Project) do
     end
   end
 
+  describe('.not_done') do
+    it('tells you if the project is done or not') do
+      not_done_project1 = Project.create({:description => 'count the money', :done => false})
+      not_done_project2 = Project.create({:description => 'steal the money', :done => false})
+      not_done_projects = [not_done_project1, not_done_projects]
+      expect(Project.not_done()).to(eq(not_done_projects))
+    end
+  end
 
 end
