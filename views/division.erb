@@ -1,0 +1,16 @@
+<h1><%= @current_division.name %> Division</h1>
+<hr>
+
+<form action="/division_edit/<%= @current_division.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+
+  <label for="name_input">Update Division Name</label>
+  <input type="text" id="name_input" name="name_input">
+
+  <button type="submit" class="btn btn-primary">Update Division</button>
+</form>
+
+<form action="/division_delete/<%= @current_division.id %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <button type="submit" class="btn btn-danger">Delete Division</button>
+</form>
