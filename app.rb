@@ -113,3 +113,22 @@ patch('/division_assignment/:id') do
   erb(:employee)
 end
 # End Employees Routing
+
+# Start Projects Routing
+get('/project_manager') do
+  erb(:project_manager)
+end
+
+get('/projects') do
+  @all_projects = Project.all()
+  erb(:projects)
+end
+
+post('/projects_form') do
+  description = params.fetch('description_input')
+  Project.create({:description => description})
+  @all_projects = Project.all()
+  erb(:projects)
+end
+
+# End Projects Routing

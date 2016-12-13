@@ -1,0 +1,22 @@
+<h1>Projects</h1>
+
+<h4>Project list:</h4>
+
+<% if @all_projects.any? %>
+  <ul>
+    <% @all_projects.each do |project| %>
+        <li><a href="/project/<%= project.id %>"><%= project.description %></a></li>
+    <% end%>
+  </ul>
+<% else %>
+  <p>There are no projects yet....</p>
+<% end %>
+
+<form action="/projects_form" method="post">
+  <label for="description_input">Enter Project Name</label>
+  <input type="text" id="description_input" name="description_input">
+
+  <button type="submit" class="btn btn-danger">Add Project</button>
+</form>
+
+<p><a href="/">Home</a></p>
