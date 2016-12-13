@@ -131,4 +131,43 @@ post('/projects_form') do
   erb(:projects)
 end
 
+get('/project/:id') do
+  @current_project = Project.find(params.fetch('id').to_i)
+  if !@current_project.division.nil?
+    @current_division = Division.find(@current_project.division)
+  end
+  erb(:project)
+end
+
+patch('/project_edit/:id') do
+  description_input = params.fetch('description_input')
+  @current_project = Project.find(params.fetch('id').to_i)
+  @current_project.update({:description => description_input})
+  if !@current_project.division.nil?
+    @current_division = Division.find(@current_project.division)
+  end
+  erb(:project)
+end
+
+delete('/project_delete/:id') do
+  @current_project = Project.find(params.fetch('id').to_i)
+  @current_project.delete()
+  @all_projects = Project.all()
+  erb(:projects)
+end
+
+get('/project_division/:id') do
+  @current_project = Project.find(params.fetch('id').to_i)
+  @all_divisions = Division.all()
+  erb(:project_division)
+end
+
+patch('/division_assignment_project/:id') do
+  @new_division = params.fetch('new_division').to_i
+  @current_project = Project.find(params.fetch('id').to_i)
+  @current_project.update({:division_id => @new_division})
+  @current_division = Division.find(@new_division)
+  erb(:project)
+end
+
 # End Projects Routing

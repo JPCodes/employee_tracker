@@ -1,0 +1,17 @@
+<h2>Change <%= @current_project.description() %>'s Division </h2>
+
+<form action="/division_assignment_project/<%= @current_project.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <label for="new_division">Choose a division</label>
+  <select class="form-control" name="new_division" id="new_division">
+    <% @all_divisions.each do |division| %>
+      <option value="<%= division.id %>"><%= division.name %></option>
+    <% end %>
+  </select>
+  <br>
+
+  <button type="submit" class="btn btn-success">Assign Division</button>
+</form>
+<br>
+<p><a href="/">Home</a></p>
+<p><a href="/project/<%= @current_project.id %>">Back</a></p>
