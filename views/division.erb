@@ -1,6 +1,19 @@
 <h1><%= @current_division.name %> Division</h1>
 <hr>
 
+<h4>Employee's in <%= @current_division.name %>:</h4>
+
+<% if @division_employees.any? %>
+  <ul>
+    <% @division_employees.each do |employee| %>
+        <li><a href="/employee/<%= employee.id %>"><%= employee.name %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are no employees in this division yet...</p>
+<% end %>
+
+
 <form action="/division_edit/<%= @current_division.id %>" method="post">
   <input type="hidden" name="_method" value="patch">
 
@@ -14,3 +27,7 @@
   <input type="hidden" name="_method" value="delete">
   <button type="submit" class="btn btn-danger">Delete Division</button>
 </form>
+<br>
+<p><a href="/">Home</a></p>
+<p><a href="/divisions">Back</a></p>
+<p><a href="/division_employee/<%= @current_division.id %>">Assign Employee</a></p>

@@ -30,6 +30,7 @@ end
 
 get('/division/:id') do
   @current_division = Division.find(params.fetch('id').to_i)
+  @division_employees = Employee.where(division_id: @current_division.id)
   erb(:division)
 end
 
@@ -37,6 +38,20 @@ patch('/division_edit/:id') do
   name_input = params.fetch('name_input')
   @current_division = Division.find(params.fetch('id').to_i)
   @current_division.update({:name => name_input})
+  erb(:division)
+end
+
+get('/division_employee/:id') do
+  @current_division = Division.find(params.fetch('id').to_i)
+  @all_employees = Employee.all()
+  erb(:division_employee)
+end
+
+patch('/employee_assignment/:id') do
+  @new_employee = Employee.find(params.fetch('employee').to_i)
+  @current_division = Division.find(params.fetch('id').to_i)
+  @new_employee.update({:division_id => @current_division.id})
+  @division_employees = Employee.where(division_id: @current_division.id)
   erb(:division)
 end
 

@@ -1,0 +1,17 @@
+<h2>Assign an employee to <%= @current_division.name %></h2>
+
+<form action="/employee_assignment/<%= @current_division.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <label for="employee">Choose Employee:</label>
+  <select class="form-control" name="employee">
+    <% @all_employees.each do |employee| %>
+      <option value="<%= employee.id %>"><%= employee.name %></option>
+    <% end %>
+  </select>
+  <br>
+  <button type="submit" class="btn btn-success">Assign Employee</button>
+</form>
+
+<p><a href="/">Home</a></p>
+<p><a href="/division/<%= @current_division.id %>">Back</a></p>
+<p><a href="/divisions">Divisions</a></p>
